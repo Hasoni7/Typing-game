@@ -42,40 +42,48 @@ let score = 0;
 //Initializing time
 let time = 10;
 
-//functions
+///////////functions////////////
+
+//Pick a random word from the list
 function addWordToDOM() {
   randomWord = words[Math.floor(Math.random() * words.length)];
   word.innerText = randomWord;
 }
 
+//Update score
 function updateScore() {
   score++;
   scoreEl.innerText = score;
 }
 
+//Update time
 function updateTime() {
   time--;
   updateTimeDisplay();
+
+  //if time runs out
   if (time === 0) {
     clearInterval(timeInterval);
     gameOver();
   }
 }
 
+//Update time display
 function updateTimeDisplay() {
   timeEl.innerText = `${time}s`;
 }
 
+// game over function 
 function gameOver() {
   endgameEl.innerText = `
     <h1>Time ran out</h1>
     <p>Your final score is ${score}</p>
     <button onclick="location.reload()">Reload</button>
   `;
+  // show end game
   endgameEl.style.display = "flex";
 }
-
-// EVENT LISTENERS
+///////////Event listener////////////
 
 text.addEventListener("input", () => {
   const insertedText = text.value.trim();
